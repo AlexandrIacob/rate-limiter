@@ -4,14 +4,14 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SlidingWindowRateLimiter implements RateLimiter {
+public class SlidingWindowLogRateLimiter implements RateLimiter {
     
     private final int maxRequests;
     private final Duration windowDuration;
     private final Clock clock;
     private final ConcurrentHashMap<String, Deque<Instant>> clientLogs; 
 
-    public SlidingWindowRateLimiter(int maxRequests, Duration windowDuration, Clock clock){
+    public SlidingWindowLogRateLimiter(int maxRequests, Duration windowDuration, Clock clock){
         this.maxRequests = maxRequests;
         this.windowDuration = windowDuration;
         this.clock = clock;

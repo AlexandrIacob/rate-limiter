@@ -1,18 +1,18 @@
 package com.alexandr.ratelimiter.ratelimiter;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class SlidingWindowRateLimiterTest {
-   
+import static org.junit.jupiter.api.Assertions.*;
+
+public class SlidingWindowCounterRateLimiterTest {
+  
     @Test 
     void belowLimit(){
         MutableClock a = new MutableClock(ZoneId.of("UTC"), Instant.EPOCH);
-        SlidingWindowRateLimiter x = new SlidingWindowRateLimiter(3, Duration.ofSeconds(2), a);
+        SlidingWindowCounterRateLimiter x = new SlidingWindowCounterRateLimiter(3, Duration.ofSeconds(2), a);
         for (int i = 0; i < 2; i++){
             assertTrue(x.allowRequest("Test1"));
         }
@@ -21,7 +21,7 @@ public class SlidingWindowRateLimiterTest {
     @Test
 	void atLimit() {
 		MutableClock a = new MutableClock(ZoneId.of("UTC"), Instant.EPOCH);
-		SlidingWindowRateLimiter x = new SlidingWindowRateLimiter(3, Duration.ofSeconds(2), a);
+		SlidingWindowCounterRateLimiter x = new SlidingWindowCounterRateLimiter(3, Duration.ofSeconds(2), a);
 		for(int i = 0; i < 3; i++){
 			assertTrue(x.allowRequest("Test2"));
 		}
@@ -30,7 +30,7 @@ public class SlidingWindowRateLimiterTest {
 	@Test
 	void aboveLimit() {
 		MutableClock a = new MutableClock(ZoneId.of("UTC"), Instant.EPOCH);
-		SlidingWindowRateLimiter x = new SlidingWindowRateLimiter(3, Duration.ofSeconds(2), a);	
+		SlidingWindowCounterRateLimiter x = new SlidingWindowCounterRateLimiter(3, Duration.ofSeconds(2), a);	
 		for(int i = 0; i < 4; i++){
 			if (i <3 ) assertTrue(x.allowRequest("Test3"));
             else assertFalse(x.allowRequest("Test3"));
@@ -40,7 +40,7 @@ public class SlidingWindowRateLimiterTest {
 	@Test 
 	void windowExpiry() {
 		MutableClock a = new MutableClock(ZoneId.of("UTC"), Instant.EPOCH);
-		SlidingWindowRateLimiter x = new SlidingWindowRateLimiter(3, Duration.ofSeconds(2), a);
+		SlidingWindowCounterRateLimiter x = new SlidingWindowCounterRateLimiter(3, Duration.ofSeconds(2), a);
 		for(int i = 0; i < 4; i++){
 			x.allowRequest("Test4"); 
 		}
@@ -51,15 +51,26 @@ public class SlidingWindowRateLimiterTest {
     @Test 
     void burstNearWindowBoundaryIsStillBlocked(){
         MutableClock a = new MutableClock(ZoneId.of("UTC"), Instant.EPOCH);
-        SlidingWindowRateLimiter x = new SlidingWindowRateLimiter(3, Duration.ofSeconds(2), a);
+        SlidingWindowCounterRateLimiter x = new SlidingWindowCounterRateLimiter(3, Duration.ofSeconds(2), a);
         for(int i = 0; i < 3; i++){
             x.allowRequest("Test5");
         }
         a.advance(Duration.ofSeconds(1));
         assertFalse(x.allowRequest("Test5"));
         
+    }
 
+    @Test
+    void partialCreditNearBoundaryLimitsFreshBurst(){
+        MutableClock a = new MutableClock(ZoneId.of("UTC"), Instant.EPOCH);
+        SlidingWindowCounterRateLimiter x = new SlidingWindowCounterRateLimiter(3, Duration.ofSeconds(2), a);
+
+        for (int i = 0; i < 3; i++) {
+            assertTrue(x.allowRequest("Test6"));
+        }
+
+        a.advance(Duration.ofMillis(2050));
+        assertTrue(x.allowRequest("Test6"));
+        assertFalse(x.allowRequest("Test6"));
     }
 }
-
-
