@@ -9,8 +9,8 @@ public class BenchmarkRunner {
     public static void main(String[] args) throws RunnerException {
         Options options = new OptionsBuilder()
         .include(RateLimiterBenchmark.class.getSimpleName())
-        .warmupIterations(3)
-        .measurementIterations(5)
+        .warmupIterations(5)
+        .measurementIterations(10)
         .forks(0)
         .build();
 
