@@ -44,29 +44,29 @@ export const options = {
 
 export function aggressive() {
     
-    const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'aggressive'}});
+    const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': `aggressive-${__ENV.REP}`}});
     check(res, {
         'aggressive status is 200' : (r) => r.status === 200,
     });
 }
 
 export function normalA() {
-  const res = http.get('http://localhost:8080/ping', { headers: { 'X-Client-Id': 'normal-a' } });
+  const res = http.get('http://localhost:8080/ping', { headers: { 'X-Client-Id': `normal-a-${__ENV.REP}` } });
   check(res, { 
         'normal-a status is 200': (r) => r.status === 200 
     });
 }
 
 export function normalB() {
-  const res = http.get('http://localhost:8080/ping', { headers: { 'X-Client-Id': 'normal-b' } });
+  const res = http.get('http://localhost:8080/ping', { headers: { 'X-Client-Id': `normal-b-${__ENV.REP}` } });
   check(res, {
         'normal-b status is 200': (r) => r.status === 200 
     });
 }
 
 export function normalC() {
-  const res = http.get('http://localhost:8080/ping', { headers: { 'X-Client-Id': 'normal-c' } });
+  const res = http.get('http://localhost:8080/ping', { headers: { 'X-Client-Id': `normal-c-${__ENV.REP}` } });
   check(res, {
-        'normal-c status is 200': (r) => r.status === 200 
+        'normal-c status is 200': (r) => r.status === 200
     });
 }

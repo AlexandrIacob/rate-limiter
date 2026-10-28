@@ -13,17 +13,17 @@ export const options = {
 };
 
 export default function() {
-    http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'boundary-reset-delayed-client'}});
+    http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': `boundary-reset-delayed-client-${__ENV.REP}`}});
     sleep(9.8);
     for (let i = 0; i < 100; i++){
-        const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'boundary-reset-delayed-client'}});
+        const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': `boundary-reset-delayed-client-${__ENV.REP}`}});
         check(res, {
             'delayed burst 1 status is 200' : (r) => r.status === 200,
         });
     }
     sleep(5);
     for (let i = 0; i < 100; i++) {
-        const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'boundary-reset-delayed-client'}});
+        const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': `boundary-reset-delayed-client-${__ENV.REP}`}});
         check(res, {
             'delayed burst 2 status is 200': (r) => r.status === 200,
         });

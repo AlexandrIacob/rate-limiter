@@ -13,7 +13,7 @@ export const options = {
 };
 
 export default function() {
-    const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'short-burst-client'}});
+    const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': `short-burst-client-${__ENV.REP}`}});
     check(res, {
         'status is 200': (r) => r.status === 200,
     });
