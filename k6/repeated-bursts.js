@@ -15,7 +15,7 @@ export const options = {
 export default function() {
     for(let burst = 0; burst < 10; burst ++) {
         for(let i = 0; i < 50; i++){
-            const res = http.get('http://localhost:8080/ping');
+            const res = http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'repeated-burst-client'}});
             check(res, {
                 'repeated burst status is 200' : (r) => r.status === 200,
             });

@@ -1,0 +1,148 @@
+{
+    "metrics": {
+        "http_req_waiting": {
+            "avg": 1.8823254249815218,
+            "min": 0,
+            "med": 1.5719,
+            "max": 36.1471,
+            "p(90)": 3.0270799999999998,
+            "p(95)": 4.2351
+        },
+        "http_req_receiving": {
+            "avg": 0.26994286770140424,
+            "min": 0,
+            "med": 0,
+            "max": 6.9931,
+            "p(90)": 1.0201,
+            "p(95)": 1.02174
+        },
+        "http_req_failed": {
+            "passes": 601,
+            "fails": 752,
+            "value": 0.4441980783444198
+        },
+        "iterations": {
+            "count": 1353,
+            "rate": 45.08407074584384
+        },
+        "data_received": {
+            "count": 131857,
+            "rate": 4393.680943336831
+        },
+        "http_req_duration{expected_response:true}": {
+            "avg": 2.2952078457446827,
+            "min": 0,
+            "med": 2.00195,
+            "max": 38.3221,
+            "p(90)": 3.99425,
+            "p(95)": 6.300029999999998
+        },
+        "http_req_connecting": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.04889356984478935,
+            "min": 0,
+            "med": 0,
+            "max": 11.7364
+        },
+        "http_req_tls_handshaking": {
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0
+        },
+        "http_req_sending": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.04377723577235772,
+            "min": 0,
+            "med": 0,
+            "max": 7.2048
+        },
+        "vus": {
+            "value": 0,
+            "min": 0,
+            "max": 1
+        },
+        "checks": {
+            "passes": 752,
+            "fails": 601,
+            "value": 0.5558019216555802
+        },
+        "http_req_duration": {
+            "avg": 2.1960455284552833,
+            "min": 0,
+            "med": 2.0316,
+            "max": 38.3221,
+            "p(90)": 3.221179999999999,
+            "p(95)": 4.573519999999998
+        },
+        "vus_max": {
+            "value": 25,
+            "min": 25,
+            "max": 25
+        },
+        "http_req_blocked": {
+            "min": 0,
+            "med": 0,
+            "max": 41.1323,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.17624375461936434
+        },
+        "data_sent": {
+            "count": 133043,
+            "rate": 4433.200313554547
+        },
+        "http_reqs": {
+            "rate": 45.08407074584384,
+            "count": 1353
+        },
+        "iteration_duration": {
+            "p(90)": 3.7541199999999995,
+            "p(95)": 5.4672,
+            "avg": 2.5750906134515894,
+            "min": 0,
+            "med": 2.1015,
+            "max": 42.9721
+        }
+    },
+    "root_group": {
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "normal-a status is 200": {
+                    "name": "normal-a status is 200",
+                    "path": "::normal-a status is 200",
+                    "id": "db834358f666e83ad46e0cb1891a69e2",
+                    "passes": 150,
+                    "fails": 0
+                },
+                "aggressive status is 200": {
+                    "name": "aggressive status is 200",
+                    "path": "::aggressive status is 200",
+                    "id": "469153e2e6508af0d28b0afaebfa4b95",
+                    "passes": 300,
+                    "fails": 601
+                },
+                "normal-b status is 200": {
+                    "name": "normal-b status is 200",
+                    "path": "::normal-b status is 200",
+                    "id": "6145390e95072a8ef418b7ca3ef8ddd6",
+                    "passes": 151,
+                    "fails": 0
+                },
+                "normal-c status is 200": {
+                    "fails": 0,
+                    "name": "normal-c status is 200",
+                    "path": "::normal-c status is 200",
+                    "id": "7bc75e7d26442280abd9bcd44c588eb8",
+                    "passes": 151
+                }
+            },
+        "name": ""
+    }
+}

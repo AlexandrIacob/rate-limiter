@@ -13,5 +13,5 @@ export const options = {
 };
 
 export default function () {
-  http.get('http://localhost:8080/ping');
+  http.get('http://localhost:8080/ping', {headers: {'X-Client-Id': 'below-limit-client'}});
 }
